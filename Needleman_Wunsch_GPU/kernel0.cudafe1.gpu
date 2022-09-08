@@ -1,0 +1,127 @@
+typedef char __nv_bool;
+# 2763 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/driver_types.h"
+struct CUstream_st;
+# 209 "/opt/apps/gcc/9.4.0/lib/gcc/x86_64-pc-linux-gnu/9.4.0/include/stddef.h" 3
+typedef unsigned long size_t;
+#include "crt/device_runtime.h"
+# 258 "/opt/apps/gcc/9.4.0/include/c++/9.4.0/x86_64-pc-linux-gnu/bits/c++config.h" 3
+typedef unsigned long _ZSt6size_t;
+# 121 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+___device__(extern  __no_sc__) enum cudaError cudaDeviceSynchronize(void);
+# 3295 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/crt/device_functions.h"
+___device__(extern  __no_sc__) unsigned __cudaPushCallConfiguration(struct dim3, struct dim3, size_t, struct CUstream_st *);
+# 6 "kernel0.cu"
+__global__ __var_used__ extern void _Z14nw_gpu0_kernelPhS_Pijjj(unsigned char *, unsigned char *, int *, unsigned, unsigned, unsigned);
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+___device__(static  __no_sc__) __inline__ void _ZN4dim3C1Ejjj(struct dim3 *const, unsigned, unsigned, unsigned);
+___device__(static  __no_sc__) __inline__ void _ZN4dim3C2Ejjj(struct dim3 *const, unsigned, unsigned, unsigned);
+#include "common_functions.h"
+# 6 "kernel0.cu"
+__global__ __var_used__ void _Z14nw_gpu0_kernelPhS_Pijjj(
+# 6 "kernel0.cu"
+unsigned char *reference_d, 
+# 6 "kernel0.cu"
+unsigned char *query_d, 
+# 6 "kernel0.cu"
+int *matrix_d, 
+# 6 "kernel0.cu"
+unsigned N, 
+# 6 "kernel0.cu"
+unsigned iteration, 
+# 6 "kernel0.cu"
+unsigned round){
+# 6 "kernel0.cu"
+{
+# 7 "kernel0.cu"
+ int __cuda_local_var_23660_6_non_const_position;
+# 8 "kernel0.cu"
+ int __cuda_local_var_23661_6_non_const_r;
+# 9 "kernel0.cu"
+ int __cuda_local_var_23662_6_non_const_q;
+# 7 "kernel0.cu"
+__cuda_local_var_23660_6_non_const_position = ((int)(((blockDim.x) * (blockIdx.x)) + (threadIdx.x)));
+# 8 "kernel0.cu"
+__cuda_local_var_23661_6_non_const_r = 0;
+# 9 "kernel0.cu"
+__cuda_local_var_23662_6_non_const_q = 0;
+# 10 "kernel0.cu"
+if (round == 1U)
+# 10 "kernel0.cu"
+{
+# 11 "kernel0.cu"
+__cuda_local_var_23661_6_non_const_r = ((int)((iteration - 1U) - ((unsigned)__cuda_local_var_23660_6_non_const_position)));
+# 12 "kernel0.cu"
+__cuda_local_var_23662_6_non_const_q = __cuda_local_var_23660_6_non_const_position;
+# 13 "kernel0.cu"
+} else  {
+# 14 "kernel0.cu"
+if (round == 2U)
+# 14 "kernel0.cu"
+{
+# 15 "kernel0.cu"
+__cuda_local_var_23661_6_non_const_r = ((int)((N - ((unsigned)__cuda_local_var_23660_6_non_const_position)) - 1U));
+# 16 "kernel0.cu"
+__cuda_local_var_23662_6_non_const_q = ((int)((N - iteration) + ((unsigned)__cuda_local_var_23660_6_non_const_position)));
+# 17 "kernel0.cu"
+} }
+# 18 "kernel0.cu"
+if (((unsigned)__cuda_local_var_23660_6_non_const_position) < iteration)
+# 18 "kernel0.cu"
+{
+# 19 "kernel0.cu"
+ int __cuda_local_var_23672_7_non_const_top;
+# 20 "kernel0.cu"
+ int __cuda_local_var_23673_14_non_const_left;
+# 21 "kernel0.cu"
+ int __cuda_local_var_23674_14_non_const_topleft;
+# 23 "kernel0.cu"
+ int __cuda_local_var_23676_14_non_const_insertion;
+# 24 "kernel0.cu"
+ int __cuda_local_var_23677_14_non_const_deletion;
+# 25 "kernel0.cu"
+ int __cuda_local_var_23678_14_non_const_match;
+# 27 "kernel0.cu"
+ int __cuda_local_var_23680_14_non_const_max;
+# 19 "kernel0.cu"
+__cuda_local_var_23672_7_non_const_top = ((__cuda_local_var_23662_6_non_const_q == 0) ? ((__cuda_local_var_23661_6_non_const_r + 1) * (-1)) : (matrix_d[((((unsigned)(__cuda_local_var_23662_6_non_const_q - 1)) * N) + ((unsigned)__cuda_local_var_23661_6_non_const_r))]));
+# 20 "kernel0.cu"
+__cuda_local_var_23673_14_non_const_left = ((__cuda_local_var_23661_6_non_const_r == 0) ? ((__cuda_local_var_23662_6_non_const_q + 1) * (-1)) : (matrix_d[((((unsigned)__cuda_local_var_23662_6_non_const_q) * N) + ((unsigned)(__cuda_local_var_23661_6_non_const_r - 1)))]));
+# 21 "kernel0.cu"
+__cuda_local_var_23674_14_non_const_topleft = ((__cuda_local_var_23662_6_non_const_q == 0) ? (__cuda_local_var_23661_6_non_const_r * (-1)) : ((__cuda_local_var_23661_6_non_const_r == 0) ? (__cuda_local_var_23662_6_non_const_q * (-1)) : (matrix_d[((((unsigned)(__cuda_local_var_23662_6_non_const_q - 1)) * N) + ((unsigned)(__cuda_local_var_23661_6_non_const_r - 1)))])));
+# 23 "kernel0.cu"
+__cuda_local_var_23676_14_non_const_insertion = (__cuda_local_var_23672_7_non_const_top + (-1));
+# 24 "kernel0.cu"
+__cuda_local_var_23677_14_non_const_deletion = (__cuda_local_var_23673_14_non_const_left + (-1));
+# 25 "kernel0.cu"
+__cuda_local_var_23678_14_non_const_match = (__cuda_local_var_23674_14_non_const_topleft + ((((int)(query_d[__cuda_local_var_23662_6_non_const_q])) == ((int)(reference_d[__cuda_local_var_23661_6_non_const_r]))) ? 1 : (-1)));
+# 27 "kernel0.cu"
+__cuda_local_var_23680_14_non_const_max = ((__cuda_local_var_23676_14_non_const_insertion > __cuda_local_var_23677_14_non_const_deletion) ? __cuda_local_var_23676_14_non_const_insertion : __cuda_local_var_23677_14_non_const_deletion);
+# 28 "kernel0.cu"
+__cuda_local_var_23680_14_non_const_max = ((__cuda_local_var_23678_14_non_const_match > __cuda_local_var_23680_14_non_const_max) ? __cuda_local_var_23678_14_non_const_match : __cuda_local_var_23680_14_non_const_max);
+# 29 "kernel0.cu"
+(matrix_d[((((unsigned)__cuda_local_var_23662_6_non_const_q) * N) + ((unsigned)__cuda_local_var_23661_6_non_const_r))]) = __cuda_local_var_23680_14_non_const_max;
+# 30 "kernel0.cu"
+} 
+# 32 "kernel0.cu"
+}}
+__asm__(".align 2");
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+___device__(static  __no_sc__) __inline__ void _ZN4dim3C1Ejjj( struct dim3 *const this, 
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+unsigned vx, 
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+unsigned vy, 
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+unsigned vz){
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+{
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+(this->x) = vx;
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+(this->y) = vy;
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+(this->z) = vz; 
+# 423 "/opt/apps/cuda/11.4/bin/../targets/x86_64-linux/include/vector_types.h"
+}}
+__asm__(".align 2");
+___device__(static  __no_sc__) __inline__ void _ZN4dim3C2Ejjj( struct dim3 *const this,  unsigned __T0,  unsigned __T1,  unsigned __T2){ {  _ZN4dim3C1Ejjj(this, __T0, __T1, __T2);  }}

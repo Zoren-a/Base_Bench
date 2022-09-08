@@ -1,0 +1,79 @@
+typedef char __nv_bool;
+# 8 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 3
+struct timeval;
+# 245 "/usr/include/x86_64-linux-gnu/bits/libio.h" 3
+struct _IO_FILE;
+# 52 "/usr/include/x86_64-linux-gnu/sys/time.h" 3
+struct timezone;
+# 9 "timer.h"
+enum PrintColor {
+# 9 "timer.h"
+NONE,
+# 9 "timer.h"
+GREEN,
+# 9 "timer.h"
+DGREEN,
+# 9 "timer.h"
+CYAN};
+# 11 "timer.h"
+struct Timer;
+# 216 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h" 3
+typedef unsigned long size_t;
+#include "crt/device_runtime.h"
+# 148 "/usr/include/x86_64-linux-gnu/bits/types.h" 3
+typedef long __time_t;
+# 150 "/usr/include/x86_64-linux-gnu/bits/types.h" 3
+typedef long __suseconds_t;
+# 8 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 3
+struct timeval {
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 3
+__time_t tv_sec;
+# 11 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 3
+__suseconds_t tv_usec;};
+# 7 "/usr/include/x86_64-linux-gnu/bits/types/FILE.h" 3
+typedef struct _IO_FILE FILE;
+# 58 "/usr/include/x86_64-linux-gnu/sys/time.h" 3
+typedef struct timezone *__restrict__ __timezone_ptr_t;
+# 11 "timer.h"
+struct Timer {
+# 12 "timer.h"
+struct timeval startTime;
+# 13 "timer.h"
+struct timeval endTime;};
+# 14 "timer.h"
+typedef struct Timer Timer;
+# 231 "/usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h" 3
+typedef unsigned long _ZSt6size_t;
+# 70 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+___device__(static  __no_sc__) __inline__ enum cudaError cudaMalloc(void **, size_t);
+# 121 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+___device__(extern  __no_sc__) enum cudaError cudaDeviceSynchronize(void);
+# 139 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+___device__(extern  __no_sc__) enum cudaError cudaFree(void *);
+#if !defined(__CUDABE__)
+# 102 "/usr/include/x86_64-linux-gnu/bits/stdio2.h" 3
+ __device_builtin__ ___device__(extern  __no_sc__) __inline__ __attribute__((__artificial__)) __attribute__((__always_inline__)) __attribute__((__gnu_inline__)) int printf(const char *__restrict__, ...);
+#endif
+# 157 "/usr/local/cuda/bin/../targets/x86_64-linux/include/crt/common_functions.h"
+___device__(extern  __no_sc__) __attribute__((__malloc__)) __attribute__((__nothrow__)) void *malloc(size_t);
+# 158 "/usr/local/cuda/bin/../targets/x86_64-linux/include/crt/common_functions.h"
+___device__(extern  __no_sc__) __attribute__((__nothrow__)) void free(void *);
+#include "common_functions.h"
+# 70 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+___device__(static  __no_sc__) __inline__ enum cudaError cudaMalloc(
+# 70 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+void **p, 
+# 70 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+size_t s){
+# 71 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+{
+# 72 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+return cudaErrorUnknown;
+# 73 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+}}
+#if !defined(__CUDABE__)
+#endif
+#if !defined(__CUDABE__)
+# 153 "/usr/local/cuda/bin/../targets/x86_64-linux/include/crt/common_functions.h"
+ __device_builtin__ ___device__(extern  __no_sc__) __attribute__((__artificial__)) __attribute__((__always_inline__)) int printf(const char *, ...);
+#endif

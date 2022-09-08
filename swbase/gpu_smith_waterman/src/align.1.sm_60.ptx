@@ -1,0 +1,106 @@
+
+
+
+
+
+
+
+
+.version 7.4
+.target sm_60
+.address_size 64
+
+
+
+.visible .entry _Z8fill_gpu6MatrixS_PcS0_iPi(
+.param .align 8 .b8 _Z8fill_gpu6MatrixS_PcS0_iPi_param_0[24],
+.param .align 8 .b8 _Z8fill_gpu6MatrixS_PcS0_iPi_param_1[24],
+.param .u64 _Z8fill_gpu6MatrixS_PcS0_iPi_param_2,
+.param .u64 _Z8fill_gpu6MatrixS_PcS0_iPi_param_3,
+.param .u32 _Z8fill_gpu6MatrixS_PcS0_iPi_param_4,
+.param .u64 _Z8fill_gpu6MatrixS_PcS0_iPi_param_5
+)
+{
+.reg .pred %p<7>;
+.reg .b16 %rs<3>;
+.reg .f32 %f<10>;
+.reg .b32 %r<30>;
+.reg .b64 %rd<21>;
+
+
+ld.param.v2.u32 {%r3, %r4}, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_0];
+ld.param.u64 %rd2, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_2];
+ld.param.u64 %rd3, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_3];
+ld.param.u32 %r5, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_4];
+ld.param.u64 %rd4, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_5];
+ld.param.u64 %rd5, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_1+16];
+ld.param.u64 %rd6, [_Z8fill_gpu6MatrixS_PcS0_iPi_param_0+16];
+cvta.to.global.u64 %rd1, %rd4;
+cvta.to.global.u64 %rd7, %rd6;
+cvta.to.global.u64 %rd8, %rd5;
+mov.u32 %r7, %tid.x;
+mov.u32 %r8, %ctaid.x;
+mov.u32 %r9, %ntid.x;
+mad.lo.s32 %r10, %r9, %r8, %r7;
+add.s32 %r11, %r5, -256;
+setp.gt.s32 %p1, %r5, 257;
+selp.b32 %r12, %r11, 0, %p1;
+add.s32 %r13, %r10, %r12;
+add.s32 %r14, %r13, 1;
+sub.s32 %r15, %r5, %r14;
+add.s32 %r16, %r15, 1;
+mul.lo.s32 %r17, %r14, %r3;
+add.s32 %r1, %r16, %r17;
+sub.s32 %r18, %r17, %r3;
+add.s32 %r19, %r18, %r16;
+add.s32 %r20, %r17, %r15;
+mul.wide.s32 %rd9, %r19, 4;
+add.s64 %rd10, %rd7, %rd9;
+ld.global.f32 %f1, [%rd10];
+add.f32 %f2, %f1, 0fC0000000;
+cvt.rzi.s32.f32 %r21, %f2;
+setp.gt.s32 %p2, %r21, 0;
+selp.b32 %r22, %r21, 0, %p2;
+selp.u32 %r23, 1, 0, %p2;
+mul.wide.s32 %rd11, %r20, 4;
+add.s64 %rd12, %rd7, %rd11;
+ld.global.f32 %f3, [%rd12];
+add.f32 %f4, %f3, 0fC0000000;
+cvt.rzi.s32.f32 %r24, %f4;
+setp.gt.s32 %p3, %r24, %r22;
+max.s32 %r25, %r24, %r22;
+selp.b32 %r26, 2, %r23, %p3;
+cvta.to.global.u64 %rd13, %rd2;
+cvt.s64.s32 %rd14, %r15;
+add.s64 %rd15, %rd13, %rd14;
+cvta.to.global.u64 %rd16, %rd3;
+cvt.s64.s32 %rd17, %r13;
+add.s64 %rd18, %rd16, %rd17;
+ld.global.u8 %rs1, [%rd18];
+ld.global.u8 %rs2, [%rd15];
+setp.eq.s16 %p4, %rs2, %rs1;
+selp.f32 %f5, 0f40400000, 0fC0400000, %p4;
+ld.global.f32 %f6, [%rd10+-4];
+add.f32 %f7, %f6, %f5;
+cvt.rzi.s32.f32 %r27, %f7;
+setp.ge.s32 %p5, %r27, %r25;
+max.s32 %r2, %r27, %r25;
+selp.b32 %r28, 3, %r26, %p5;
+cvt.rn.f32.s32 %f8, %r2;
+st.global.f32 [%rd12+4], %f8;
+cvt.rn.f32.s32 %f9, %r28;
+mul.wide.s32 %rd19, %r1, 4;
+add.s64 %rd20, %rd8, %rd19;
+st.global.f32 [%rd20], %f9;
+ld.global.u32 %r29, [%rd1+4];
+setp.le.s32 %p6, %r2, %r29;
+@%p6 bra $L__BB0_2;
+
+st.global.u32 [%rd1], %r1;
+st.global.u32 [%rd1+4], %r2;
+
+$L__BB0_2:
+ret;
+
+}
+
